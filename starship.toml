@@ -1,0 +1,67 @@
+format = """
+[](fg:#012030 bg:#025939)\
+$directory\
+[](fg:#025939 bg:#490373)\
+$git_branch\
+[](fg:#490373 bg:#734903)\
+$git_status\
+[ ](fg:#734903 bg:#012030)\
+"""
+
+right_format = """
+[](fg:#012030 bg:#0099DD)\
+$kubernetes\
+[](fg:#0099DD bg:#F2AE30)\
+$aws\
+[](fg:#F2AE30 bg:#025939)\
+$time\
+[](fg:#025939)
+"""
+
+
+
+[directory]
+style = "bg:#025939"
+format = "[ $path ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
+
+# Here is how you can shorten some long paths by text replacement
+# similar to mapped_locations in Oh My Posh:
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = " "
+"Pictures" = " "
+# Keep in mind that the order matters. For example:
+# "Important Documents" = " 󰈙 "
+# will not be replaced, because "Documents" was already substituted before.
+# So either put "Important Documents" before "Documents" or use the substituted version:
+# "Important 󰈙 " = " 󰈙 "
+
+[git_branch]
+symbol = ""
+style = "bg:#490373"
+format = '[ $symbol $branch ]($style)'
+
+[git_status]
+style = "bg:#734903"
+format = '[$all_status$ahead_behind ]($style)'
+
+[aws]
+format = '[$symbol ($profile )(\($region\) )]($style)'
+style = "fg:#000000 bg:#F2AE30"
+symbol = "'"
+force_display = true
+
+[kubernetes]
+symbol = "⎈ "
+format = "[$symbol$context(\\($namespace\\))]($style)"
+style = "bg:#0099DD"
+disabled = false
+
+[time]
+style = "bg:#025939"
+disabled = false
+time_format = '%T'
+format = '[$time]($style)'
